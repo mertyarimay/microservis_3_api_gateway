@@ -30,14 +30,14 @@
 	<packaging>jar</packaging>
 	<properties>
 		<encoding>UTF-8</encoding>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<maven.compiler.release>21</maven.compiler.release>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.release>17</maven.compiler.release>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
