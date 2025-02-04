@@ -12,9 +12,33 @@ spring:
     gateway:
       routes:  #Birden fazla yönlendirme içindir.
         - id: product-service  # bu rota için benzersiz bir kimlik
-          uri: lb://PRODUCT-SERVİCE #isteklerin nereye yönlendirileceğini belirtir
+          uri: lb://product-service #isteklerin nereye yönlendirileceğini belirtir
           predicates: # rota üstünde hangi isteklerin yönlendirileceğini belirler belirli koşullara  uyan istekleri yakalar yani filtreleme yapar
-            - Path=/products/**   # ile başlayan tüm istekleri bu mikroservise yönledirecektir.
+            - Path=/product/api/**   # ile başlayan tüm istekleri bu mikroservise yönledirecektir.
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/product/brand/api/**
+
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/category/api/**
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/category/title/api/**
+
+
+
+
+
+
+
+
 
         - id: order-service
           uri: lb://ORDER-SERVİCE
