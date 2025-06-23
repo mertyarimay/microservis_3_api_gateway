@@ -34,16 +34,44 @@ spring:
 
 
 
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/**,/user/**
 
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/**,/customer/api/**
 
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/**,/role/api/**
 
-
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/auth/**,/users/roles/api/**
 
 
         - id: order-service
-          uri: lb://ORDER-SERVİCE
+          uri: lb://order-service
           predicates:
-            - Path=/orders/**
+           - Path=/auth/**,/order/api/**
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/auth/**,/order/item/api/**
+
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/auth/**,/adress/api/**
+
+
 eureka:
   client:
     service-url:
@@ -52,4 +80,14 @@ eureka:
   logging:
     level:
       root: DEBUG
+
+
+
+
+
+
+
+
+
+
 
