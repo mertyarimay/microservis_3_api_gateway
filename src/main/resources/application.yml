@@ -1,98 +1,46 @@
-#port
 server:
   port: 8080
 
-#application.properties
-#spring.application.name=api_gateway
-#application.yml
 spring:
   application:
     name: api_gateway
-  cloud:  #spring cloud gateway istekleri yönlendirmek içindir.
+
+  cloud:
     gateway:
-      routes:  #Birden fazla yönlendirme içindir.
-        - id: product-service  # bu rota için benzersiz bir kimlik
-          uri: lb://product-service #isteklerin nereye yönlendirileceğini belirtir
-          predicates: # rota üstünde hangi isteklerin yönlendirileceğini belirler belirli koşullara  uyan istekleri yakalar yani filtreleme yapar
-            - Path=/product/api/**   # ile başlayan tüm istekleri bu mikroservise yönledirecektir.
-
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/product/brand/api/**
+      routes:
 
 
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/category/api/**
-
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/category/title/api/**
-
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/products/**
-
+            - Path=/product/api/**,
+              /product/brand/api/**,
+              /category/api/**,
+              /category/title/api/**,
+              /products/**
 
 
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/auth/**,/user/api/**
+            - Path=/user/api/**,
+              /customer/api/**,
+              /role/api/**,
+              /users/roles/api/**
 
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/auth/**,/customer/api/**
-
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/auth/**,/role/api/**
-
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/auth/**,/users/roles/api/**
-
-
+      
         - id: order-service
           uri: lb://order-service
           predicates:
-           - Path=/auth/**,/order/api/**
-
-        - id: order-service
-          uri: lb://order-service
-          predicates:
-            - Path=/auth/**,/order/item/api/**
-
-
-        - id: order-service
-          uri: lb://order-service
-          predicates:
-            - Path=/auth/**,/adress/api/**
-
+            - Path=/order/api/**,
+              /order/item/api/**,
+              /address/api/**
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-  logging:
-    level:
-      root: DEBUG
-
-
-
-
-
-
-
-
-
-
-
+logging:
+  level:
+    root: DEBUG
